@@ -25,6 +25,12 @@ export default function RepositoriesListPageContainer() {
     },
     [searchRepositories, navigate]
   );
+  const onRepositoryClick = useCallback(
+    (repoName: string) => {
+      navigate(`/${currentOrg}/${repoName}`);
+    },
+    [currentOrg, navigate]
+  );
 
   useEffect(() => {
     searchRepositories(currentOrg);
@@ -42,6 +48,7 @@ export default function RepositoriesListPageContainer() {
       onOrganizationChange={getRepositoriiesForOrg}
       currentOrg={currentOrg}
       onSearch={filterByName}
+      onRepositoryClick={onRepositoryClick}
     />
   );
 }

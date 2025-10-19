@@ -12,6 +12,7 @@ interface RepositoriesListPageProps {
   onOrganizationChange: (org: OrganizationKey) => void;
   currentOrg: OrganizationKey;
   onSearch: (name: string) => void;
+  onRepositoryClick: (repoName: string) => void;
 }
 
 const getButtonClasses = (isActive?: boolean) =>
@@ -22,11 +23,6 @@ const getButtonClasses = (isActive?: boolean) =>
   }`;
 
 export default function RepositoriesListPage(props: RepositoriesListPageProps) {
-  // TODO: if list of repositories is big, we need to move repository button into a component and memoize it
-  const handleRepositoryClick = (repoName: string) => {
-    window.location.href = `/${props.currentOrg}/${repoName}`;
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <header className="sticky top-0 z-50 border-b border-slate-700 bg-slate-900/80 backdrop-blur-md">
@@ -92,7 +88,7 @@ export default function RepositoriesListPage(props: RepositoriesListPageProps) {
               {props.repositories.map((repo) => (
                 <button
                   key={repo.id}
-                  onClick={() => handleRepositoryClick(repo.id.toString())}
+                  onClick={() => props.onRepositoryClick(repo.id.toString())}
                   className="group relative overflow-hidden rounded-lg border border-slate-700 bg-slate-800 transition-all duration-300 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20 text-left w-full"
                 >
                   <div className="p-6">
