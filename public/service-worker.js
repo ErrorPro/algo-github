@@ -1,11 +1,19 @@
 const CACHE_NAME = "v1";
+const BASE_PATH =
+  location.hostname === "errorpro.github.io" ? "/algo-github" : "";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(["/", "/index.html", "/manifest.json"]).catch(() => {
-        console.log("Initial cache failed, will cache on first request");
-      });
+      return cache
+        .addAll([
+          `${BASE_PATH}/`,
+          `${BASE_PATH}/index.html`,
+          `${BASE_PATH}/manifest.json`,
+        ])
+        .catch(() => {
+          console.log("Initial cache failed, will cache on first request");
+        });
     })
   );
   self.skipWaiting();
