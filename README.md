@@ -17,6 +17,6 @@ Domain-based flat architecture. Every domain follows the same structure. Due to 
 5. **Caching** - Currently implemented using localStorage. A few considerations:
    - Only caches the last used API requests. More advanced caching strategies need to be implemented.
    - localStorage has its own limitations. Ideally, caching should be implemented using a different tool or approach (Service Worker or IndexedDB).
-6. **Filtering and pagination** - The app currently only allows filtering by organization (username) and does not have pagination.
+6. **Filtering and pagination** - The app currently only allows filtering by organization (username) and does not have pagination. Also, the app currently filters only in memory results, ideally we need to use the GH API to do that.
 7. **useCallback usage** - In a few places, functions are used with or without `useCallback`. This is intentional, as the new React compiler should handle this automatically, but the underlying principle is still in place.
 8. **Service Workers** - a basic SW is implemented but it needs more time to cover all the cases.
